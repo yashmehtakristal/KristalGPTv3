@@ -97,8 +97,34 @@ def login_button_pressed():
             st.warning('Please enter the username field')
 
 try:
-    users = fetch_users()
-
+    # Manual
+    users = [
+    {
+        "date_joined": "2023-11-20 21:00:53.314598",
+        "key": "kristal@kristal.ai",
+        "password": "$2b$12$6RYhw66ZJu1Urq8TkjmCROIgZnpQoFxyF5cF8fFSjE86J.fE/vmTG",
+        "username": "kristalfinprod"
+    },
+    {
+        "date_joined": "2023-11-04 21:05:14.242484",
+        "key": "kristaldemo@kristal.ai",
+        "password": "$2b$12$dXHADlNf6u8YvGz1qFK9yuwrUzsRJaKFK93b7iH9Gbn.aMMYCRMVS",
+        "username": "kristaldemo"
+    },
+    {
+        "date_joined": "2023-11-20 21:01:34.612698",
+        "key": "kristalemail@kristal.ai",
+        "password": "$2b$12$YGGj5ze6IXz6/3mXVBn4BOQSrmDY7lly.1sFCwTmp7mwAQa/RR0Mq",
+        "username": "kristalb2b2c"
+    },
+    {
+        "date_joined": "2023-11-02 15:42:22.350322",
+        "key": "yash2.mehta@gmail.com",
+        "password": "$2b$12$hbq2c1h3ockwd0pDGsxuXuxv4D0TE2QY12Jtp3ddNEXnHv3OAvRc.",
+        "username": "yashmehta"
+    }
+]
+    
     emails = []
     usernames = []
     passwords = []
