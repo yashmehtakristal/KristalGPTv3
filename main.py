@@ -4,6 +4,7 @@ import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
 import streamlit as st
+import traceback
 
 # Setting page config & header
 st.set_page_config(page_title="Kristal Retriever", page_icon="📖", layout="wide", initial_sidebar_state="expanded")
@@ -154,6 +155,6 @@ try:
         st.success("You have succesfully logged in", icon = "🎉")
         # logout_button = st.sidebar.button("Logout", on_click = change_states)
 
-except Exception as e:
-    st.error(f'An error occurred: {e}')
+#except Exception as e:
+    #st.error(f'An error occurred: {e}')
     # st.success('Refresh Page')
