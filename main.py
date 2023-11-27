@@ -97,64 +97,64 @@ def login_button_pressed():
         with info:
             st.warning('Please enter the username field')
 
-try:
-    users = fetch_users()
 
-    emails = []
-    usernames = []
-    passwords = []
+users = fetch_users()
 
-    for user in users:
-        emails.append(user['key'])
-        usernames.append(user['username'])
-        passwords.append(user['password'])
+emails = []
+usernames = []
+passwords = []
 
-    credentials = {'usernames': {}}
+for user in users:
+    emails.append(user['key'])
+    usernames.append(user['username'])
+    passwords.append(user['password'])
+
+credentials = {'usernames': {}}
+
+for index in range(len(emails)):
+    credentials['usernames'][usernames[index]] = {'name': emails[index], 'password': passwords[index]}
+
+Authenticator = stauth.Authenticate(credentials, cookie_name = 'Streamlit', key = 'abcdef', cookie_expiry_days = 0)
+st.session_state.Authenticator = Authenticator
+
+# email, authentication_status, username = Authenticator.login('Login', 'main')
+
+
+with st.form(key='login'):
+    st.subheader('Login')
+
+    username = st.text_input('Username', placeholder='Enter Your Username', help =
+                    '''
+                    Please make sure:
+                    1) Username is at least 2 characters long
+                    2) Username contains only alphanumeric characters (letters and digits)
+                    ''',
+                    key = "username"
+                    )
     
-    for index in range(len(emails)):
-        credentials['usernames'][usernames[index]] = {'name': emails[index], 'password': passwords[index]}
-
-    Authenticator = stauth.Authenticate(credentials, cookie_name = 'Streamlit', key = 'abcdef', cookie_expiry_days = 0)
-    st.session_state.Authenticator = Authenticator
-
-    # email, authentication_status, username = Authenticator.login('Login', 'main')
-
-    
-    with st.form(key='login'):
-        st.subheader('Login')
-
-        username = st.text_input('Username', placeholder='Enter Your Username', help =
+    password = st.text_input('Password', placeholder='Enter Your Password', type='password',
+                        help =
                         '''
                         Please make sure:
-                        1) Username is at least 2 characters long
-                        2) Username contains only alphanumeric characters (letters and digits)
+                        1) Length of password is at least 6 characters long
+                        2) Password can contain any characters (letters, digits, underscore, dashes, period etc)
                         ''',
-                        key = "username"
+                        key = "password"
                         )
-        
-        password = st.text_input('Password', placeholder='Enter Your Password', type='password',
-                            help =
-                            '''
-                            Please make sure:
-                            1) Length of password is at least 6 characters long
-                            2) Password can contain any characters (letters, digits, underscore, dashes, period etc)
-                            ''',
-                            key = "password"
-                            )
-        
-        btn1, bt2, btn3, btn4, btn5 = st.columns(5)
+    
+    btn1, bt2, btn3, btn4, btn5 = st.columns(5)
 
-        with btn1:
-            login_button = st.form_submit_button('Login', on_click= login_button_pressed)
+    with btn1:
+        login_button = st.form_submit_button('Login', on_click= login_button_pressed)
 
-    if st.session_state.password_match == True:
-        st.session_state.logged_in = True
-        st.session_state.logout = False
+if st.session_state.password_match == True:
+    st.session_state.logged_in = True
+    st.session_state.logout = False
 
-        st.sidebar.subheader(f'Welcome {st.session_state.username}')
-        st.success("You have succesfully logged in", icon = "🎉")
-        # logout_button = st.sidebar.button("Logout", on_click = change_states)
+    st.sidebar.subheader(f'Welcome {st.session_state.username}')
+    st.success("You have succesfully logged in", icon = "🎉")
+    # logout_button = st.sidebar.button("Logout", on_click = change_states)
 
 #except Exception as e:
-    #st.error(f'An error occurred: {e}')
-    # st.success('Refresh Page')
+#st.error(f'An error occurred: {e}')
+# st.success('Refresh Page')
