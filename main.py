@@ -11,18 +11,6 @@ st.set_page_config(page_title="Kristal Retriever", page_icon="📖", layout="wid
 st.header("📖 Kristal Retriever")
 
 from st_pages import Page, Section, add_page_title, show_pages, hide_pages
-
-show_pages(
-    [
-        Page("main.py","Login", "🗝️"),
-        Page("pages/home.py", "About", "😀"),
-        Page("pages/bulk_upload_basic.py", "Bulk Upload - Basic", "📚"),
-        Page("pages/bulk_upload_advanced.py", "Bulk Upload - Advanced", "📚"),
-        Page("pages/qa_basic.py", "Q&A - Basic", "❓"),
-        Page("pages/qa_advanced.py", "Q&A - Advanced", "❓")
-    ]
-)
-
 from streamlit_extras.app_logo import add_logo
 from database_helper_functions import sign_up, fetch_users
 import streamlit_authenticator as stauth
@@ -36,6 +24,18 @@ import openai
 OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
 openai.api_key = OPENAI_API_KEY
 openai_api_key = OPENAI_API_KEY
+
+show_pages(
+    [
+        Page("main.py","Login", "🗝️"),
+        Page("pages/home.py", "About", "😀"),
+        Page("pages/bulk_upload_basic.py", "Bulk Upload - Basic", "📚"),
+        Page("pages/bulk_upload_advanced.py", "Bulk Upload - Advanced", "📚"),
+        Page("pages/qa_basic.py", "Q&A - Basic", "❓"),
+        Page("pages/qa_advanced.py", "Q&A - Advanced", "❓")
+    ]
+)
+
 
 # Session state variables
 if "logged_out" not in st.session_state:
